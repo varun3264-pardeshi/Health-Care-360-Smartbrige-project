@@ -1,0 +1,35 @@
+Column_Name,Data_Type,Description,Unit
+patient_id,String,Synthetic Unique Patient Identifier (e.g. PT-10042),N/A
+age,Integer,Patient age in completed years,Years
+gender,String,Self-reported gender identity,Categories (Male/Female/Other)
+region,String,Healthcare network administrative geographic region,Region name
+bmi,Float,Body Mass Index (weight in kg / height in meters squared),kg/m^2
+bmi_category,String,WHO standard BMI clinical category,Underweight/Normal/Overweight/Obesity
+systolic_bp,Integer,Resting Systolic Blood Pressure,mmHg
+diastolic_bp,Integer,Resting Diastolic Blood Pressure,mmHg
+bp_category,String,2017 AHA/ACC clinical blood pressure category,Normal/Elevated/Stage 1/Stage 2/Crisis
+mean_arterial_pressure,Float,Calculated Mean Arterial Pressure (DBP + PP/3),mmHg
+pulse_pressure,Integer,Calculated Pulse Pressure (SBP - DBP),mmHg
+cholesterol_total,Float,Total serum cholesterol concentration,mg/dL
+cholesterol_hdl,Float,High-Density Lipoprotein serum concentration,mg/dL
+cholesterol_ldl,Float,Low-Density Lipoprotein serum concentration,mg/dL
+cholesterol_ratio,Float,Atherogenic index ratio (Total Chol / HDL),Ratio
+fasting_glucose,Float,Fasting blood glucose concentration,mg/dL
+glucose_category,String,ADA Fasting Glucose Diagnostic Category,Normal/Prediabetes/Diabetes
+hba1c,Float,Glycated Hemoglobin concentration,%
+smoking_status,String,Current tobacco smoking history,Never/Former/Current
+alcohol_consumption,String,Self-reported alcohol intake intensity,None/Moderate/Heavy
+physical_activity_mins,Integer,Moderate-to-vigorous exercise per week,Minutes/week
+exercise_level,String,WHO aerobic recommendation adherence,Sedentary/Lightly Active/Active
+fatigue_reported,Integer,"Persistent clinical fatigue symptom (1=Yes, 0=No)",Binary flag
+chest_pain_type,String,Clinical angina classification,None/Typical Angina/Atypical Angina/Non-Anginal
+dizziness_reported,Integer,"Episodes of lightheadedness or vertigo (1=Yes, 0=No)",Binary flag
+shortness_of_breath,Integer,"Exertional dyspnea (1=Yes, 0=No)",Binary flag
+heart_disease,Integer,"Confirmed coronary/myocardial heart condition (1=Yes, 0=No)",Binary outcome
+diabetes,Integer,"Confirmed Type 2 Diabetes diagnosis (1=Yes, 0=No)",Binary outcome
+stroke,Integer,"Documented cerebrovascular event / stroke (1=Yes, 0=No)",Binary outcome
+multimorbidity_count,Integer,Sum of diagnosed chronic conditions (0 to 3),Count
+data_completeness_pct,Float,Calculated patient record completeness percentage,Percentage
+assessment_date,Date,Assessment clinical visit date,YYYY-MM-DD
+review_status,String,Clinical review workflow stage,Reviewed/Pending/Follow-Up Scheduled
+is_synthetic,Integer,De-identification / Demonstration marker flag (Always 1),Binary flag

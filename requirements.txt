@@ -1,0 +1,33 @@
+# Chronic Disease Risk Analysis & Healthcare Intelligence System
+# Dependency Specification (Python 3.10 - 3.14 Compatible)
+
+# Core Scientific & Data Processing
+pandas>=2.0.0
+numpy>=1.24.0
+scipy>=1.10.0
+scikit-learn>=1.3.0
+joblib>=1.3.0
+
+# Interactive Dashboard Companion
+streamlit>=1.30.0
+streamlit-option-menu>=0.4.0
+plotly>=5.18.0
+
+# REST API & Web Server
+fastapi>=0.109.0
+uvicorn>=0.27.0
+pydantic>=2.5.0
+python-multipart>=0.0.9
+
+# Reporting & Exports
+reportlab>=4.0.0
+xlsxwriter>=3.1.0
+
+# Security & Utilities
+cryptography>=41.0.0
+python-dateutil>=2.8.2
+requests>=2.31.0
+
+# Automated Testing
+pytest>=8.0.0
+httpx>=0.26.0

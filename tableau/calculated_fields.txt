@@ -1,0 +1,80 @@
+// ==============================================================================
+// PULSEPOINT HEALTHCARE INTELLIGENCE — TABLEAU CALCULATED FIELDS SPECIFICATION
+// ==============================================================================
+// Copy and paste these exact formulas into Tableau Desktop / Tableau Public.
+
+// 1. High Blood Pressure Crisis Flag
+// Description: Flags critical hypertensive emergencies per 2017 AHA/ACC guidelines
+IF [systolic_bp] >= 180 OR [diastolic_bp] >= 120 THEN 
+    "Hypertensive Crisis"
+ELSEIF [systolic_bp] >= 140 OR [diastolic_bp] >= 90 THEN 
+    "Hypertension Stage 2"
+ELSEIF [systolic_bp] >= 130 OR [diastolic_bp] >= 80 THEN 
+    "Hypertension Stage 1"
+ELSEIF [systolic_bp] >= 120 AND [diastolic_bp] < 80 THEN 
+    "Elevated"
+ELSE 
+    "Normal"
+END
+
+// 2. Diabetic Glycemic Status
+// Description: Categorizes glycemic control per American Diabetes Association criteria
+IF [fasting_glucose] >= 126 OR [hba1c] >= 6.5 THEN
+    "Diabetic Range"
+ELSEIF [fasting_glucose] >= 100 OR [hba1c] >= 5.7 THEN
+    "Prediabetic Range"
+ELSE
+    "Normal Glycemia"
+END
+
+// 3. Atherogenic Cholesterol Ratio
+// Description: Total cholesterol to HDL ratio indicating coronary plaque vulnerability
+ROUND([cholesterol_total] / [cholesterol_hdl], 2)
+
+// 4. Mean Arterial Pressure (MAP)
+// Description: Average arterial pressure throughout one cardiac cycle (mmHg)
+ROUND([diastolic_bp] + (([systolic_bp] - [diastolic_bp]) / 3), 1)
+
+// 5. Pulse Pressure
+// Description: Hemodynamic marker for arterial stiffness (mmHg)
+[systolic_bp] - [diastolic_bp]
+
+// 6. Multimorbidity Index
+// Description: Aggregate count of concurrent chronic conditions
+[heart_disease] + [diabetes] + [stroke]
+
+// 7. Multimorbidity Classification
+IF ([heart_disease] + [diabetes] + [stroke]) >= 2 THEN
+    "High Multimorbidity (2+ Conditions)"
+ELSEIF ([heart_disease] + [diabetes] + [stroke]) = 1 THEN
+    "Single Chronic Condition"
+ELSE
+    "No Recorded Chronic Disease"
+END
+
+// 8. Heart Disease Prevalence Rate (%)
+// Aggregate Measure
+SUM([heart_disease]) / COUNT([patient_id]) * 100
+
+// 9. Type 2 Diabetes Prevalence Rate (%)
+// Aggregate Measure
+SUM([diabetes]) / COUNT([patient_id]) * 100
+
+// 10. Stroke Prevalence Rate (%)
+// Aggregate Measure
+SUM([stroke]) / COUNT([patient_id]) * 100
+
+// 11. Lifestyle Risk Score (0 - 3)
+// Description: Composite behavioral burden (Smoking + Heavy Alcohol + Sedentary)
+(IF [smoking_status] = "Current" THEN 1 ELSE 0 END) +
+(IF [alcohol_consumption] = "Heavy" THEN 1 ELSE 0 END) +
+(IF [physical_activity_mins] < 60 THEN 1 ELSE 0 END)
+
+// 12. Symptom Cluster Severity
+// Description: Additive symptomatic burden (Angina + Dizziness + Dyspnea + Fatigue)
+(IF [chest_pain_type] = "Typical Angina" THEN 2 
+ ELSEIF [chest_pain_type] = "Atypical Angina" THEN 1 
+ ELSE 0 END) +
+[dizziness_reported] +
+[shortness_of_breath] +
+[fatigue_reported]

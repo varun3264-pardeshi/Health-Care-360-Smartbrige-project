@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PulsePoint OS v5.0 — Unified Cyber-Medical Control Center & Tableau Suite</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800;900&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- STICKY CYBER-MEDICAL COMMAND CENTER NAVBAR -->
+    <header class="navbar">
+        <div class="nav-container">
+            <div class="brand">
+                <div class="brand-icon">⚡</div>
+                <div class="brand-text">
+                    <span class="brand-title">PULSEPOINT OS</span>
+                    <span class="brand-subtitle">🎛️ UNIFIED CONTROL CENTER v5.0</span>
+                </div>
+            </div>
+
+            <!-- ANIMATED LIVE ECG MONITOR (STREAMLIT CYBER STYLE) -->
+            <div class="ecg-header-box">
+                <svg width="105" height="24" viewBox="0 0 120 26" style="overflow: visible;">
+                    <path d="M 0 13 L 25 13 L 30 13 L 35 3 L 42 23 L 48 8 L 52 16 L 56 13 L 85 13 L 90 3 L 97 23 L 103 8 L 107 16 L 111 13 L 120 13" 
+                          fill="none" stroke="#00f2fe" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <animate attributeName="stroke-dasharray" from="0,200" to="200,0" dur="1.8s" repeatCount="indefinite" />
+                    </path>
+                </svg>
+                <span class="ecg-bpm-text">72 BPM ● LIVE</span>
+            </div>
+
+            <nav class="nav-links">
+                <a href="#control-center-bar" class="nav-item active">🎛️ Control Center</a>
+                <a href="#main-dashboard" class="nav-item">Main Dashboard</a>
+                <a href="#scenario-1" class="nav-item">1. Clinical Risk</a>
+                <a href="#scenario-2" class="nav-item">2. Lifestyle</a>
+                <a href="#scenario-3" class="nav-item">3. Population</a>
+                <a href="#predictor" class="nav-item">AI &amp; Organ Twin</a>
+                <a href="#privacy-section" class="nav-item">🛡️ Privacy</a>
+            </nav>
+
+            <div class="nav-actions-right">
+                <button class="theme-toggle-btn" onclick="openModal('privacy-modal')">🛡️ Privacy &amp; Policy</button>
+                <button class="login-nav-btn" id="active-user-btn" onclick="openModal('login-modal')">🔐 Dr. M. Carter (Login)</button>
+                <button class="theme-toggle-btn" id="btn-theme-toggle" onclick="toggleTheme()">☀️ Light Mode</button>
+                <a href="http://localhost:8501" target="_blank" class="streamlit-launch-pill">🚀 Streamlit Control Center</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN SPACIOUS VERTICAL WORKSPACE -->
+    <main class="main-content">
+
+        <!-- CYBER-MEDICAL TELEMETRY TICKER + UNIFIED CONTROL CENTER DOCK -->
+        <div id="control-center-bar" class="telemetry-ticker-web">
+            <span>🟢 CONTROL CENTER: ONLINE</span>
+            <span id="ticker-operator">👤 OPERATOR: DR. MICHAEL CARTER, MD (SCENARIO 1 LEAD)</span>
+            <span>📊 COHORT: 5,000 VALIDATED PATIENTS</span>
+            <span>🛡️ PRIVACY: HIPAA / DPDP SAFE HARBOR</span>
+            <span>🔒 CIPHER: AES-256 / JWT</span>
+        </div>
+
+        <div class="card control-center-dock">
+            <div class="cc-dock-header">
+                <div>
+                    <span class="section-eyebrow">🎛️ UNIFIED CYBER-MEDICAL CONTROL CENTER</span>
+                    <h3 style="margin:2px 0 0 0; font-family:var(--font-heading); font-size:1.15rem;">Rapid Cohort Triage, Stakeholder Jumpers &amp; One-Click Exports</h3>
+                </div>
+                <div class="cc-dock-badges">
+                    <button class="btn-sm" onclick="quickTriageCohort('htn')">🚨 HTN Crisis (SBP≥180)</button>
+                    <button class="btn-sm" onclick="quickTriageCohort('diabetes')">🩸 Severe Glycemia</button>
+                    <button class="btn-sm" onclick="quickTriageCohort('multimorbid')">⚠️ Multimorbid (2+)</button>
+                    <button class="btn-sm" onclick="resetScenarioFilters()">🔄 Reset All</button>
+                    <button class="btn-sm" onclick="openModal('login-modal')">🔐 Switch Clinician Role</button>
+                    <button class="btn-sm" onclick="openModal('privacy-modal')">🛡️ Privacy &amp; HIPAA Policy</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===================================================================
+             SECTION 1: EXECUTIVE MAIN DASHBOARD (KPIs + FILTERS + MASTER CHARTS)
+             =================================================================== -->
+        <section id="main-dashboard" class="section-block">
+            <div class="hero-banner-card">
+                <div>
+                    <span style="font-size:0.76rem; font-weight:800; letter-spacing:0.1em; text-transform:uppercase; color:#00f2fe;">
+                        ⚡ PULSEPOINT CYBER-MEDICAL OS v5.0 • UNIFIED WEB + STREAMLIT PLATFORM
+                    </span>
+                    <h1>Chronic Disease Intelligence &amp; Control Center</h1>
+                    <p>
+                        Unified surveillance across <strong>Heart Disease</strong>, <strong>Type 2 Diabetes</strong>, and <strong>Stroke</strong>—combining the Streamlit Cyber-Medical Control Center aesthetic with dedicated vertical dashboards for <strong>Dr. Michael Carter</strong>, <strong>Emily Rodriguez</strong>, and <strong>Dr. Priya Nair</strong>.
+                    </p>
+                </div>
+                <div class="hero-btn-group">
+                    <a href="http://localhost:8501" target="_blank" class="btn btn-white">🎛️ Open Full Streamlit Control Center (:8501)</a>
+                    <a href="/api/web/download/tableau" download="Chronic_Disease_Intelligence.twb" class="btn btn-glass">📥 Download .TWB</a>
+                    <button onclick="downloadExecutiveReport()" class="btn btn-glass">📄 Executive PDF</button>
+                    <button onclick="openModal('privacy-modal')" class="btn btn-glass">🛡️ Privacy &amp; Policy</button>
+                </div>
+            </div>
+
+            <!-- 6 SPACIOUS KPI CARDS -->
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <div class="kpi-label">TOTAL MONITORED</div>
+                    <div class="kpi-value" id="kpi-total">5,000</div>
+                    <div class="kpi-subtext" id="kpi-high-risk">High-Risk: 64.2%</div>
+                </div>
+                <div class="kpi-card danger">
+                    <div class="kpi-label">HEART DISEASE</div>
+                    <div class="kpi-value" id="kpi-hd">6.9%</div>
+                    <div class="kpi-subtext" id="kpi-hd-cases">346 Cases</div>
+                </div>
+                <div class="kpi-card warning">
+                    <div class="kpi-label">TYPE 2 DIABETES</div>
+                    <div class="kpi-value" id="kpi-diab">10.6%</div>
+                    <div class="kpi-subtext" id="kpi-diab-cases">529 Cases</div>
+                </div>
+                <div class="kpi-card info">
+                    <div class="kpi-label">STROKE / CVA</div>
+                    <div class="kpi-value" id="kpi-stroke">1.7%</div>
+                    <div class="kpi-subtext" id="kpi-stroke-cases">87 Cases</div>
+                </div>
+                <div class="kpi-card purple">
+                    <div class="kpi-label">MEAN SYSTOLIC BP</div>
+                    <div class="kpi-value" id="kpi-sbp">136.4</div>
+                    <div class="kpi-subtext">mmHg (AHA Stage 1)</div>
+                </div>
+                <div class="kpi-card green">
+                    <div class="kpi-label">MEAN GLUCOSE / BMI</div>
+                    <div class="kpi-value" id="kpi-gluc-bmi">108 / 27.1</div>
+                    <div class="kpi-subtext">mg/dL • kg/m²</div>
+                </div>
+            </div>
+
+            <!-- GLOBAL COHORT FILTER BAR -->
+            <div class="card filter-bar-card">
+                <div class="filter-bar-grid">
+                    <div class="filter-control">
+                        <label for="flt-region">Geographic Region</label>
+                        <select id="flt-region" onchange="applyScenarioFilters()">
+                            <option value="All">All Regions (5,000)</option>
+                            <option value="North Region">North Region</option>
+                            <option value="South Region">South Region</option>
+                            <option value="East Region">East Region</option>
+                            <option value="West Region">West Region</option>
+                            <option value="Central Metro">Central Metro</option>
+                        </select>
+                    </div>
+                    <div class="filter-control">
+                        <label for="flt-gender">Patient Gender</label>
+                        <select id="flt-gender" onchange="applyScenarioFilters()">
+                            <option value="All">All Genders</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other/Non-Binary">Other/Non-Binary</option>
+                        </select>
+                    </div>
+                    <div class="filter-control">
+                        <label for="flt-age">Age Group Cohort</label>
+                        <select id="flt-age" onchange="applyScenarioFilters()">
+                            <option value="All">All Age Groups</option>
+                            <option value="18-35">18–35 Years</option>
+                            <option value="36-50">36–50 Years</option>
+                            <option value="51-65">51–65 Years</option>
+                            <option value="65+">65+ Years</option>
+                        </select>
+                    </div>
+                    <div class="filter-control">
+                        <label for="flt-bmi">BMI Category</label>
+                        <select id="flt-bmi" onchange="applyScenarioFilters()">
+                            <option value="All">All BMI Categories</option>
+                            <option value="Normal">Normal (18.5–24.9)</option>
+                            <option value="Overweight">Overweight (25.0–29.9)</option>
+                            <option value="Obesity Class I">Obesity Class I (30.0–34.9)</option>
+                            <option value="Obesity Class II">Obesity Class II (35.0–39.9)</option>
+                        </select>
+                    </div>
+                    <div class="filter-control">
+                        <button class="btn btn-secondary" style="width:100%;" onclick="resetScenarioFilters()">🔄 Reset All Filters</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MAIN EXECUTIVE OVERVIEW CHARTS -->
+            <div class="spacious-two-col">
+                <div class="card">
+                    <div class="card-header-clean">
+                        <h3 class="card-title">Executive Multi-Disease Prevalence & High-Risk Burden (%)</h3>
+                        <span class="chart-tag">Master KPI View</span>
+                    </div>
+                    <div class="chart-wrapper-tall">
+                        <canvas id="chart-prevalence"></canvas>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header-clean">
+                        <h3 class="card-title">Disease Trajectory Across Age Cohorts (18–35 to 65+ Years)</h3>
+                        <span class="chart-tag">Longitudinal Trend</span>
+                    </div>
+                    <div class="chart-wrapper-tall">
+                        <canvas id="chart-age"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================================================================
+             SECTION 2: SCENARIO 1 — DR. MICHAEL CARTER (CLINICAL RISK ASSESSMENT)
+             =================================================================== -->
+        <section id="scenario-1" class="section-block">
+            <div class="section-banner">
+                <div>
+                    <span class="section-step-pill pill-indigo">🩺 SCENARIO 1 • DR. MICHAEL CARTER</span>
+                    <h2 class="section-title">Clinical Risk Assessment Dashboard</h2>
+                    <p class="section-subtitle">Evaluating Blood Pressure (AHA stages), Fasting Glucose/HbA1c, Cholesterol, and 2D patient biomarker clusters.</p>
+                </div>
+                <span class="chart-tag" id="sc1-mini-sbp">Cohort Mean SBP: 136.4 mmHg</span>
+            </div>
+
+            <div class="spacious-two-col">
+                <div class="card">
+                    <div class="card-header-clean">
+                        <h3 class="card-title">1A. Blood Pressure Category (AHA) vs. Chronic Disease Rate (%)</h3>
+                        <span class="chart-tag">Hemodynamic Risk</span>
+                    </div>
+                    <div class="chart-wrapper-tall">
+                        <canvas id="chart-sc1-bp"></canvas>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header-clean">
+                        <h3 class="card-title">1B. Glycemic Status (Fasting Glucose / HbA1c) vs. Disease Rate (%)</h3>
+                        <span class="chart-tag">ADA Glycemic Tiers</span>
+                    </div>
+                    <div class="chart-wrapper-tall">
+                        <canvas id="chart-sc1-glucose"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="spacious-two-col">
+                <div class="card">
+                    <div class="card-header-clean">
+                        <h3 class="card-title">1C. Interactive 2D Patient Scatter (Systolic BP vs. Fasting Glucose)</h3>
+                        <span class="chart-tag">Click Point to Inspect Patient</span>
+                    </div>
+                    <div class="chart-wrapper-tall">
+                        <canvas id="chart-sc1-scatter"></canvas>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header-clean">
+                        <h3 class="card-title">1D. Clinical Biomarker Shift: Disease-Positive vs. Negative</h3>
+                        <span class="chart-tag">Mean Comparison</span>
+                    </div>
+                    <div class="chart-wrapper-tall">
+                        <canvas id="chart-sc1-biomarkers"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================================================================
+             SECTION 3: SCENARIO 2 — EMILY RODRIGUEZ (LIFESTYLE & BEHAVIORAL)
+             =================================================================== -->
+        <section id="scenario-2" class="section-block">
+            <div class="section-banner">
+                <div>
+                    <span class="section-step-pill pill-amber">📈 SCENARIO 2 • EMILY RODRIGUEZ</span>
+                    <h2 class="section-title">Lifestyle & Behavioral Impact Dashboard</h2>
+                    <p class="section-subtitle">Correlating Tobacco Smoking habits, Physical Activity levels, and Alcohol consumption with chronic illness.</p>
+                </div>
+                <span class="chart-tag">Smoker Risk Multiplier: 2.0x</span>
+            </div>
+
+            <div class="spacious-two-col">
+                <div class="card">
+                    <div class="card-header-clean">
+                        <h3 class="card-title">2A. Tobacco Smoking Habit vs. Chronic Disease Prevalence (%)</h3>
+                        <span class="chart-tag">Never / Former / Current</span>
+                    </div>
+                    <div class="chart-wrapper-tall">
+                        <canvas id="chart-sc2-smoking"></canvas>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header-clean">
+                        <h3 class="card-title">2B. Physical Activity & Exercise Level Protective Gradient (%)</h3>
+                        <span class="chart-tag">WHO Activity Tiers</span>
+                    </div>
+                    <div class="chart-wrapper-tall">
+                        <canvas id="chart-sc2-exercise"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="spacious-two-col">
+                <div class="card">
+                    <div class="card-header-clean">
+                        <h3 class="card-title">2C. Alcohol Consumption Intensity vs. Disease Rate (%)</h3>
+                        <span class="chart-tag">Dose-Response</span>
+                    </div>
+                    <div class="chart-wrapper-tall">
+                        <canvas id="chart-sc2-alcohol"></canvas>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header-clean">
+                        <h3 class="card-title">2D. 5-Axis Behavioral Risk Radar (Smoker+Sedentary vs. Active)</h3>
+                        <span class="chart-tag">Multi-Axis Radar</span>
+                    </div>
+                    <div class="chart-wrapper-tall">
+                        <canvas id="chart-sc2-radar"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================================================================
+             SECTION 4: SCENARIO 3 — DR. PRIYA NAIR (POPULATION & SYMPTOMS)
+             =================================================================== -->
+        <section id="scenario-3" class="section-block">
+            <div class="section-banner">
+                <div>
+                    <span class="section-step-pill pill-purple">🌍 SCENARIO 3 • DR. PRIYA NAIR</span>
+                    <h2 class="section-title">Population Vulnerability & Symptom Surveillance</h2>
+                    <p class="section-subtitle">Analyzing BMI categories, clinical warning symptoms (Angina, Fatigue, Dizziness), and 2D Age × BMI risk zones.</p>
+                </div>
+                <span class="chart-tag">Click Any Heatmap Cell to Filter</span>
+            </div>
+
+            <div class="spacious-two-col">
+                <div class="card">
+                    <div class="card-header-clean">
+                        <h3 class="card-title">3A. BMI Category Vulnerability Distribution (%)</h3>
+                        <span class="chart-tag">Adiposity Impact</span>
+                    </div>
+                    <div class="chart-wrapper-tall">
+                        <canvas id="chart-sc3-bmi"></canvas>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header-clean">
+                        <h3 class="card-title">3B. Symptom Surveillance (Chest Pain, Fatigue, Dizziness)</h3>
+                        <span class="chart-tag">Clinical Symptoms</span>
+                    </div>
+                    <div class="chart-wrapper-tall">
+                        <canvas id="chart-sc3-symptoms"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header-clean">
+                    <h3 class="card-title">3C. Interactive 2D Age Group × BMI Category Vulnerability Heatmap (Any Chronic Condition %)</h3>
+                    <span class="chart-tag">Click Any Cell to Cross-Filter All Dashboards</span>
+                </div>
+                <div id="heatmap-sc3-container" class="heatmap-table-wrap"></div>
+            </div>
+        </section>
+
+        <!-- ===================================================================
+             SECTION 5: INTERACTIVE VISUAL TABLEAU STORYBOARD & LIVE EMBED
+             =================================================================== -->
+        <section id="tableau-story" class="section-block">
+            <div class="section-banner">
+                <div>
+                    <span class="section-step-pill pill-teal">📖 TABLEAU STORY & PUBLIC EMBED</span>
+                    <h2 class="section-title">Interactive Visual Storyboard</h2>
+                    <p class="section-subtitle">Step through the 5 Story Points or embed your live hosted Tableau Public Dashboard/Story URL.</p>
+                </div>
+                <div style="display:flex; gap:10px;">
+                    <button class="btn-sm" id="btn-story-autoplay" onclick="toggleStoryAutoPlay()">▶ Auto-Play Story</button>
+                    <button class="btn-sm" id="btn-story-interactive" onclick="toggleStoryMode('interactive')">📊 Visual Story</button>
+                    <button class="btn-sm" id="btn-story-embed" onclick="toggleStoryMode('embed')">🌐 Embed Tableau Public URL</button>
+                </div>
+            </div>
+
+            <div id="story-interactive-container" class="card">
+                <div class="story-stepper">
+                    <button class="story-step-btn active" onclick="selectStoryPoint(0)">1. Cohort Burden</button>
+                    <button class="story-step-btn" onclick="selectStoryPoint(1)">2. Dr. Carter (Clinical)</button>
+                    <button class="story-step-btn" onclick="selectStoryPoint(2)">3. Emily (Lifestyle)</button>
+                    <button class="story-step-btn" onclick="selectStoryPoint(3)">4. Dr. Nair (Population)</button>
+                    <button class="story-step-btn" onclick="selectStoryPoint(4)">5. Intervention ROI</button>
+                </div>
+
+                <div class="story-visual-grid">
+                    <div>
+                        <div class="card-header-clean">
+                            <div>
+                                <span class="chart-tag" id="story-step-badge">STORY POINT 1 / 5</span>
+                                <h3 class="card-title" id="story-point-title" style="margin-top:6px;">Chronic Disease Cohort Burden</h3>
+                            </div>
+                            <button class="btn-sm" id="story-action-btn" onclick="switchScenarioTab('scenario1')">Jump to Section →</button>
+                        </div>
+                        <div class="chart-wrapper-tall" style="height:280px;">
+                            <canvas id="chart-story-dynamic"></canvas>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="story-kpi-mini-grid" id="story-kpi-cards"></div>
+                        <div class="story-takeaway-banner" id="story-takeaway-text"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="story-embed-container" class="card" style="display: none;">
+                <div style="display: flex; gap: 12px; margin-bottom: 1.5rem;">
+                    <input type="url" id="tableau-story-url" class="form-group" style="flex:1; padding:0.75rem 1rem; border-radius:10px; border:1px solid var(--border-color);" placeholder="Paste Tableau Public Dashboard or Story Share URL (https://public.tableau.com/views/...)">
+                    <button class="btn btn-primary" onclick="loadCustomTableauEmbed('story')">⚡ Embed Live View</button>
+                </div>
+                <div id="tableau-story-iframe-wrap" style="min-height: 600px; display:flex; align-items:center; justify-content:center; border:2px dashed var(--border-color); border-radius:16px;">
+                    <div style="text-align:center; padding:2rem;">
+                        <h3>🌐 Tableau Public Live Embed Studio</h3>
+                        <p style="color:var(--text-secondary); margin-top:6px;">Paste your published Tableau Public link above to render your live interactive workbook right here.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================================================================
+             SECTION 6: AI MULTI-DISEASE PREDICTOR & ANATOMICAL ORGAN TWIN
+             =================================================================== -->
+        <section id="predictor" class="section-block">
+            <div class="section-banner">
+                <div>
+                    <span class="section-step-pill pill-rose">🧬 AI CLINICAL SIMULATION</span>
+                    <h2 class="section-title">Multi-Condition AI Risk Predictor & Organ Digital Twin</h2>
+                    <p class="section-subtitle">Adjust clinical biomarkers or test persona presets to simulate organ-level stress and intervention impact.</p>
+                </div>
+                <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                    <button class="btn-sm" onclick="loadPreset('healthy')">🟢 Healthy</button>
+                    <button class="btn-sm" onclick="loadPreset('cardio')">🔴 Cardiac Crisis</button>
+                    <button class="btn-sm" onclick="loadPreset('diabetic')">🟠 Severe Diabetic</button>
+                    <button class="btn-sm" onclick="loadPreset('stroke')">🟣 Stroke Risk</button>
+                </div>
+            </div>
+
+            <div class="predictor-three-col">
+                <!-- COL 1: BIOMARKER INPUTS -->
+                <div class="card">
+                    <div class="card-header-clean">
+                        <h3 class="card-title">1. Patient Biomarkers</h3>
+                        <span class="chart-tag">Live Input</span>
+                    </div>
+                    <form id="prediction-form" onsubmit="event.preventDefault(); runPrediction();">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="pred-age">Age (Yrs)</label>
+                                <input type="number" id="pred-age" min="18" max="100" value="58" oninput="runPrediction()">
+                            </div>
+                            <div class="form-group">
+                                <label for="pred-gender">Gender</label>
+                                <select id="pred-gender" onchange="runPrediction()">
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Other/Non-Binary">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="pred-bmi">BMI (kg/m²)</label>
+                                <input type="number" id="pred-bmi" step="0.1" min="12" max="60" value="31.2" oninput="runPrediction()">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="pred-sbp">Systolic BP</label>
+                                <input type="number" id="pred-sbp" min="80" max="240" value="158" oninput="runPrediction()">
+                            </div>
+                            <div class="form-group">
+                                <label for="pred-dbp">Diastolic BP</label>
+                                <input type="number" id="pred-dbp" min="40" max="140" value="94" oninput="runPrediction()">
+                            </div>
+                            <div class="form-group">
+                                <label for="pred-glucose">Glucose (mg/dL)</label>
+                                <input type="number" id="pred-glucose" min="50" max="400" value="142" oninput="runPrediction()">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="pred-hba1c">HbA1c (%)</label>
+                                <input type="number" id="pred-hba1c" step="0.1" min="4.0" max="16.0" value="7.4" oninput="runPrediction()">
+                            </div>
+                            <div class="form-group">
+                                <label for="pred-chol">Total Chol</label>
+                                <input type="number" id="pred-chol" min="100" max="450" value="238" oninput="runPrediction()">
+                            </div>
+                            <div class="form-group">
+                                <label for="pred-hdl">HDL Chol</label>
+                                <input type="number" id="pred-hdl" min="15" max="120" value="38" oninput="runPrediction()">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="pred-ldl">LDL Chol</label>
+                                <input type="number" id="pred-ldl" min="30" max="300" value="162" oninput="runPrediction()">
+                            </div>
+                            <div class="form-group">
+                                <label for="pred-smoking">Smoking</label>
+                                <select id="pred-smoking" onchange="runPrediction()">
+                                    <option value="Never">Never</option>
+                                    <option value="Former">Former</option>
+                                    <option value="Current" selected>Current</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="pred-exercise">Exercise (m/wk)</label>
+                                <input type="number" id="pred-exercise" min="0" max="1000" value="40" oninput="runPrediction()">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="pred-angina">Chest Pain</label>
+                                <select id="pred-angina" onchange="runPrediction()">
+                                    <option value="None">None</option>
+                                    <option value="Typical Angina" selected>Typical Angina</option>
+                                    <option value="Atypical Angina">Atypical Angina</option>
+                                    <option value="Non-Anginal">Non-Anginal</option>
+                                </select>
+                            </div>
+                            <div class="form-group checkbox-group">
+                                <label><input type="checkbox" id="pred-fatigue" checked onchange="runPrediction()"> Fatigue</label>
+                                <label><input type="checkbox" id="pred-sob" checked onchange="runPrediction()"> Dizziness</label>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" style="width:100%; margin-top:6px;">⚡ Recalculate AI Risk</button>
+                    </form>
+                </div>
+
+                <!-- COL 2: ANIMATED ANATOMICAL ORGAN TWIN -->
+                <div class="card" style="display:flex; flex-direction:column; align-items:center; justify-content:space-between;">
+                    <div class="card-header-clean" style="width:100%;">
+                        <h3 class="card-title">2. Organ Digital Twin</h3>
+                        <span class="chart-tag" id="organ-overall-badge">HIGH RISK</span>
+                    </div>
+                    <div class="organ-svg-stage">
+                        <svg viewBox="0 0 240 380" class="cyber-body-svg">
+                            <path d="M120,18 C136,18 148,30 148,46 C148,60 138,72 126,75 L126,84 L168,92 C182,95 190,106 190,122 L186,205 C185,212 178,215 173,212 L166,132 L156,132 L160,235 L152,355 C151,364 140,364 138,355 L128,250 L112,250 L102,355 C100,364 89,364 88,355 L80,235 L84,132 L74,132 L67,212 C62,215 55,212 54,205 L50,122 C50,106 58,95 72,92 L114,84 L114,75 C102,72 92,60 92,46 C92,30 104,18 120,18 Z"
+                                  fill="rgba(79, 70, 229, 0.08)" stroke="#4f46e5" stroke-width="2" />
+                            <line x1="120" y1="45" x2="120" y2="230" stroke="rgba(79, 70, 229, 0.3)" stroke-dasharray="4,4" stroke-width="1.5" />
+
+                            <g class="organ-hotspot" onclick="inspectOrgan('brain')">
+                                <circle id="organ-ring-brain" cx="120" cy="44" r="18" fill="rgba(59, 130, 246, 0.22)" stroke="#3b82f6" stroke-width="2.2" />
+                                <circle cx="120" cy="44" r="7" fill="#3b82f6" />
+                                <text x="150" y="48" fill="currentColor" font-size="10" font-weight="700">CEREBRAL</text>
+                            </g>
+
+                            <g class="organ-hotspot" onclick="inspectOrgan('heart')">
+                                <circle id="organ-ring-heart" cx="128" cy="126" r="22" fill="rgba(225, 29, 72, 0.22)" stroke="#e11d48" stroke-width="2.4" />
+                                <circle cx="128" cy="126" r="8" fill="#e11d48" />
+                                <text x="156" y="130" fill="currentColor" font-size="10" font-weight="700">CORONARY</text>
+                            </g>
+
+                            <g class="organ-hotspot" onclick="inspectOrgan('pancreas')">
+                                <circle id="organ-ring-pancreas" cx="116" cy="176" r="20" fill="rgba(217, 119, 6, 0.22)" stroke="#d97706" stroke-width="2.2" />
+                                <circle cx="116" cy="176" r="7" fill="#d97706" />
+                                <text x="144" y="180" fill="currentColor" font-size="10" font-weight="700">GLYCEMIC</text>
+                            </g>
+
+                            <g class="organ-hotspot" onclick="inspectOrgan('vascular')">
+                                <circle id="organ-ring-vascular" cx="95" cy="145" r="15" fill="rgba(124, 58, 237, 0.22)" stroke="#7c3aed" stroke-width="2" />
+                                <circle cx="95" cy="145" r="6" fill="#7c3aed" />
+                                <text x="20" y="149" fill="currentColor" font-size="10" font-weight="700">ARTERIAL</text>
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="organ-telemetry-readout" id="organ-telemetry-box">
+                        Click any pulsing organ node above to inspect clinical stress.
+                    </div>
+                </div>
+
+                <!-- COL 3: STRATIFIED PROBABILITIES & WHAT-IF -->
+                <div class="card">
+                    <div class="card-header-clean">
+                        <h3 class="card-title">3. Stratified Probabilities</h3>
+                        <span class="chart-tag">Calibrated AI</span>
+                    </div>
+                    <div id="results-placeholder" style="display:none;"></div>
+                    <div id="results-display">
+                        <div class="disease-results-row">
+                            <div class="disease-card">
+                                <div class="disease-card-top">
+                                    <span class="disease-name">Coronary Heart Disease</span>
+                                    <span class="disease-tier" id="res-tier-hd">HIGH RISK</span>
+                                </div>
+                                <div class="disease-prob" id="res-prob-hd">0%</div>
+                                <div class="disease-bar-bg"><div class="disease-bar-fill" id="res-bar-hd" style="width: 0%;"></div></div>
+                            </div>
+
+                            <div class="disease-card">
+                                <div class="disease-card-top">
+                                    <span class="disease-name">Type 2 Diabetes</span>
+                                    <span class="disease-tier" id="res-tier-diab">HIGH RISK</span>
+                                </div>
+                                <div class="disease-prob" id="res-prob-diab">0%</div>
+                                <div class="disease-bar-bg"><div class="disease-bar-fill" id="res-bar-diab" style="width: 0%;"></div></div>
+                            </div>
+
+                            <div class="disease-card">
+                                <div class="disease-card-top">
+                                    <span class="disease-name">Cerebrovascular Stroke</span>
+                                    <span class="disease-tier" id="res-tier-stroke">MODERATE</span>
+                                </div>
+                                <div class="disease-prob" id="res-prob-stroke">0%</div>
+                                <div class="disease-bar-bg"><div class="disease-bar-fill" id="res-bar-stroke" style="width: 0%;"></div></div>
+                            </div>
+                        </div>
+
+                        <div class="drivers-box">
+                            <h4>🔍 Primary Clinical Risk Drivers:</h4>
+                            <ul id="res-drivers-list"></ul>
+                        </div>
+
+                        <div class="what-if-box">
+                            <h4>🎛️ What-If Intervention Simulator</h4>
+                            <div class="whatif-controls">
+                                <label>SBP Reduction: <strong>-<span id="val-sbp-red">15</span> mmHg</strong></label>
+                                <input type="range" id="range-sbp-red" min="0" max="45" value="15" oninput="updateWhatIf()">
+                                <label>BMI Reduction: <strong>-<span id="val-bmi-red">3.0</span> kg/m²</strong></label>
+                                <input type="range" id="range-bmi-red" min="0" max="10" step="0.5" value="3.0" oninput="updateWhatIf()">
+                            </div>
+                            <div class="whatif-delta" id="whatif-delta-text"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================================================================
+             SECTION 7: LIVE COHORT EXPLORER, PATIENT 360 & CLINICAL ALERTS
+             =================================================================== -->
+        <section id="cohort-explorer" class="section-block">
+            <div class="section-banner">
+                <div>
+                    <span class="section-step-pill pill-indigo">🔬 PATIENT EXPLORER & EHR SURVEILLANCE</span>
+                    <h2 class="section-title">Live 5,000-Patient Cohort Explorer</h2>
+                    <p class="section-subtitle">Search or filter patients and click <strong>⚡ Simulate</strong> to test any patient in the AI & Organ Digital Twin above.</p>
+                </div>
+                <div class="explorer-controls">
+                    <input type="text" id="explorer-search" placeholder="Search Patient ID or Region..." oninput="loadCohortExplorer()">
+                    <select id="explorer-condition" onchange="loadCohortExplorer()">
+                        <option value="all">All Cohort Patients</option>
+                        <option value="multimorbid">⚠️ Multimorbid (2+ Diseases)</option>
+                        <option value="heart_disease">❤️ Heart Disease Positive</option>
+                        <option value="diabetes">🩸 Type 2 Diabetes Positive</option>
+                        <option value="stroke">🧠 Stroke Positive</option>
+                        <option value="high_bp">🚨 Severe HTN (SBP ≥ 160)</option>
+                    </select>
+                    <button class="btn btn-secondary" onclick="exportFilteredCohortCSV()">📥 Export CSV</button>
+                </div>
+            </div>
+
+            <div class="card" style="margin-bottom: 28px;">
+                <div class="alert-table-wrapper">
+                    <table class="alert-table">
+                        <thead>
+                            <tr>
+                                <th>Patient ID</th>
+                                <th>Age / Gender</th>
+                                <th>Region</th>
+                                <th>BP (mmHg)</th>
+                                <th>Glucose / HbA1c</th>
+                                <th>BMI</th>
+                                <th>Lifestyle</th>
+                                <th>Conditions</th>
+                                <th>Simulate</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cohort-explorer-body"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- SIDE-BY-SIDE PATIENT 360 & ACTIVE CLINICAL ALERTS -->
+            <div class="spacious-two-col">
+                <div class="card" id="patient360">
+                    <div class="card-header-clean">
+                        <h3 class="card-title">👤 Patient 360 EHR Drill-Down</h3>
+                        <div style="display:flex; gap:8px;">
+                            <input type="text" id="patient-search-input" value="PT-10001" style="width:120px; padding:6px 10px; border-radius:8px; border:1px solid var(--border-color); background:var(--bg-card-alt); color:var(--text-primary);">
+                            <button class="btn-sm" onclick="lookupPatient()">🔍 Load</button>
+                        </div>
+                    </div>
+
+                    <div style="display:flex; justify-content:space-between; align-items:center; padding-bottom:12px; border-bottom:1px solid var(--border-color);">
+                        <div>
+                            <h4 id="pt-id-display" style="font-size:1.1rem;">Patient: PT-10001</h4>
+                            <div id="pt-meta-display" style="font-size:0.84rem; color:var(--text-secondary);">Age: 51 | Gender: Male | Region: North Region</div>
+                        </div>
+                        <span class="chart-tag" id="pt-status-badge">Reviewed</span>
+                    </div>
+
+                    <div class="patient-vitals-grid">
+                        <div class="vital-item"><span class="vital-label">Blood Pressure</span><span class="vital-val" id="pt-bp">147/79 mmHg</span></div>
+                        <div class="vital-item"><span class="vital-label">Fasting Glucose</span><span class="vital-val" id="pt-glucose">91.4 mg/dL</span></div>
+                        <div class="vital-item"><span class="vital-label">HbA1c</span><span class="vital-val" id="pt-hba1c">7.35%</span></div>
+                        <div class="vital-item"><span class="vital-label">Total / HDL</span><span class="vital-val" id="pt-chol">178 / 59 mg/dL</span></div>
+                        <div class="vital-item"><span class="vital-label">BMI</span><span class="vital-val" id="pt-bmi">20.7 kg/m²</span></div>
+                        <div class="vital-item"><span class="vital-label">Smoking</span><span class="vital-val" id="pt-smoking">Never</span></div>
+                    </div>
+
+                    <div style="display:flex; gap:10px;">
+                        <select id="review-status-select" style="padding:8px 12px; border-radius:8px; border:1px solid var(--border-color); background:var(--bg-card-alt); color:var(--text-primary);">
+                            <option value="Reviewed">Reviewed</option>
+                            <option value="Pending Specialist Review">Pending Specialist</option>
+                            <option value="Follow-Up Scheduled">Follow-Up Scheduled</option>
+                        </select>
+                        <input type="text" id="review-notes-input" placeholder="Physician note..." style="flex:1; padding:8px 12px; border-radius:8px; border:1px solid var(--border-color); background:var(--bg-card-alt); color:var(--text-primary);">
+                        <button class="btn-sm" onclick="savePatientReview()">💾 Save</button>
+                    </div>
+                </div>
+
+                <div class="card" id="alerts">
+                    <div class="card-header-clean">
+                        <h3 class="card-title">🚨 Real-Time Clinical Alert Center</h3>
+                        <span class="chart-tag">Active Surveillance</span>
+                    </div>
+                    <div class="alert-table-wrapper" style="max-height: 320px; overflow-y: auto;">
+                        <table class="alert-table">
+                            <thead>
+                                <tr>
+                                    <th>Severity</th>
+                                    <th>Patient</th>
+                                    <th>Observation</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="alerts-table-body"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================================================================
+             SECTION 8: PRIVACY POLICY, HIPAA / DPDP GOVERNANCE & SECURITY CENTER
+             =================================================================== -->
+        <section id="privacy-section" class="section-block">
+            <div class="section-header-bar">
+                <div class="section-title-group">
+                    <span class="section-eyebrow">SECTION 08 • DATA GOVERNANCE, PRIVACY POLICY &amp; CLINICAL COMPLIANCE</span>
+                    <h2>🛡️ Healthcare Privacy Policy, HIPAA Safe Harbor &amp; Security Controls</h2>
+                    <p>Full transparency on patient data protection, synthetic de-identification, local encryption, and clinical decision-support governance.</p>
+                </div>
+                <button class="btn-action" onclick="openModal('privacy-modal')">📜 View Full Legal &amp; HIPAA Policy</button>
+            </div>
+
+            <div class="charts-grid-3">
+                <div class="card">
+                    <div class="card-header-clean">
+                        <h3 class="card-title">🔒 100% De-Identified Cohort</h3>
+                        <span class="chart-tag">HIPAA Safe Harbor</span>
+                    </div>
+                    <p style="color:var(--text-secondary); font-size:0.88rem; line-height:1.6;">
+                        All <strong>5,000 patient records</strong> (<code>PT-10000</code> to <code>PT-14999</code>) are synthetically generated and statistically calibrated for Heart Disease, Type 2 Diabetes, and Stroke. Zero Protected Health Information (PHI) or real patient identity is stored or transmitted.
+                    </p>
+                </div>
+                <div class="card">
+                    <div class="card-header-clean">
+                        <h3 class="card-title">🛡️ AES-256 &amp; Local Telemetry</h3>
+                        <span class="chart-tag">India DPDP &amp; GDPR</span>
+                    </div>
+                    <p style="color:var(--text-secondary); font-size:0.88rem; line-height:1.6;">
+                        All Scikit-learn risk predictions, SQLite database queries, and Tableau exports execute <strong>100% locally on your workstation</strong>. Clinician sessions are protected via SHA-256 password hashing, JWT role tokens, and immutable SQLite audit logs.
+                    </p>
+                </div>
+                <div class="card">
+                    <div class="card-header-clean">
+                        <h3 class="card-title">⚕️ Clinical Decision Disclaimer</h3>
+                        <span class="chart-tag">Verified CDS</span>
+                    </div>
+                    <p style="color:var(--text-secondary); font-size:0.88rem; line-height:1.6;">
+                        Predicted risk probabilities (<em>Low, Moderate, High, Critical</em>) and anatomical organ stress rings are intended for <strong>clinical decision support and preventive care research</strong> and must be validated by an attending physician.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- CLINICIAN LOGIN & ROLE SWITCHER MODAL -->
+    <div id="login-modal" class="cyber-modal-overlay" style="display:none;" onclick="if(event.target===this)closeModal('login-modal')">
+        <div class="cyber-modal-box">
+            <div class="cyber-modal-header">
+                <div>
+                    <span class="section-eyebrow">🔐 PULSEPOINT RBAC AUTHENTICATION</span>
+                    <h3 style="margin:4px 0 0 0; font-size:1.25rem;">Clinician Login &amp; Stakeholder Role Switcher</h3>
+                </div>
+                <button class="modal-close-btn" onclick="closeModal('login-modal')">✕</button>
+            </div>
+
+            <div class="cyber-modal-body">
+                <p style="color:var(--text-secondary); font-size:0.86rem; margin-bottom:14px;">
+                    Select a SmartBridge Stakeholder Persona for 1-click authenticated access or sign in with your clinician credentials:
+                </p>
+
+                <div class="persona-login-grid">
+                    <button class="persona-login-btn" onclick="loginAsPersona('Dr. Michael Carter, MD', 'Clinical Risk Officer (Scenario 1)', 'scenario-1')">
+                        <strong>🩺 Dr. Michael Carter, MD</strong>
+                        <small>Clinical Risk Assessment Officer • Scenario 1</small>
+                    </button>
+                    <button class="persona-login-btn" onclick="loginAsPersona('Emily Rodriguez, MSc', 'Healthcare Data Analyst (Scenario 2)', 'scenario-2')">
+                        <strong>📈 Emily Rodriguez, MSc</strong>
+                        <small>Healthcare Data Analyst • Scenario 2</small>
+                    </button>
+                    <button class="persona-login-btn" onclick="loginAsPersona('Dr. Priya Nair, MPH', 'Public Health Researcher (Scenario 3)', 'scenario-3')">
+                        <strong>🌍 Dr. Priya Nair, MPH</strong>
+                        <small>Public Health Researcher • Scenario 3</small>
+                    </button>
+                    <button class="persona-login-btn" onclick="loginAsPersona('Dr. Marcus Chen, MD', 'Chief Medical Officer (Full Control)', 'main-dashboard')">
+                        <strong>⚡ Dr. Marcus Chen, MD</strong>
+                        <small>Chief Medical Officer • Full Control Center</small>
+                    </button>
+                </div>
+
+                <hr style="border:none; border-top:1px solid var(--border-color); margin:16px 0;">
+
+                <div class="form-grid" style="margin-bottom:14px;">
+                    <div class="form-group">
+                        <label>Clinician ID / Email</label>
+                        <input type="text" id="modal-login-user" value="dr_carter@pulsepoint.med">
+                    </div>
+                    <div class="form-group">
+                        <label>Security PIN / Password</label>
+                        <input type="password" id="modal-login-pass" value="••••••••">
+                    </div>
+                </div>
+
+                <div style="display:flex; gap:10px; justify-content:flex-end;">
+                    <button class="btn-outline" onclick="lockClinicianSession()">🔒 Lock Session</button>
+                    <button class="btn-action" onclick="submitCustomLogin()">✅ Authenticate Session</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PRIVACY POLICY & HIPAA GOVERNANCE MODAL -->
+    <div id="privacy-modal" class="cyber-modal-overlay" style="display:none;" onclick="if(event.target===this)closeModal('privacy-modal')">
+        <div class="cyber-modal-box">
+            <div class="cyber-modal-header">
+                <div>
+                    <span class="section-eyebrow">🛡️ HEALTHCARE DATA GOVERNANCE &amp; COMPLIANCE</span>
+                    <h3 style="margin:4px 0 0 0; font-size:1.25rem;">Privacy Policy, HIPAA Safe Harbor &amp; Clinical Terms</h3>
+                </div>
+                <button class="modal-close-btn" onclick="closeModal('privacy-modal')">✕</button>
+            </div>
+
+            <div class="cyber-modal-body" style="font-size:0.88rem; line-height:1.65; color:var(--text-secondary);">
+                <h4 style="color:var(--text-primary); margin-bottom:4px;">1. HIPAA Safe Harbor &amp; India DPDP Act 2023 Compliance</h4>
+                <p style="margin-bottom:12px;">
+                    PulsePoint OS v5.0 processes a 100% synthetic, de-identified clinical cohort of <strong>5,000 patients</strong>. All 18 HIPAA Safe Harbor personal identifiers are excluded. No real patient Protected Health Information (PHI) is collected, stored, or shared.
+                </p>
+                <h4 style="color:var(--text-primary); margin-bottom:4px;">2. Zero Cloud Transmission &amp; AES-256 Local Security</h4>
+                <p style="margin-bottom:12px;">
+                    All clinical risk calculations, Scikit-learn ML models, SQLite database records, and Tableau workbooks (<code>.twb</code> / <code>.twbx</code>) run strictly on your local machine (`127.0.0.1:8000` &amp; `localhost:8501`).
+                </p>
+                <h4 style="color:var(--text-primary); margin-bottom:4px;">3. Clinical Decision Support (CDS) Disclaimer</h4>
+                <p style="margin-bottom:14px;">
+                    Risk probabilities for Heart Disease, Type 2 Diabetes, and Stroke are statistical estimates designed to assist preventive care planning and epidemiological analysis. Always verify findings with standard diagnostic laboratory testing.
+                </p>
+                <div style="display:flex; justify-content:space-between; align-items:center; padding-top:10px; border-top:1px solid var(--border-color);">
+                    <span style="color:var(--green); font-weight:700; font-size:0.8rem;">● Compliance Status: VERIFIED (v5.0-2026)</span>
+                    <button class="btn-action" onclick="closeModal('privacy-modal'); showToast('Privacy Policy Acknowledged ✅');">I Acknowledge &amp; Agree</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div style="max-width:1400px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+            <div>
+                <strong>⚡ PulsePoint Cyber-Medical OS v5.0</strong> — Unified Web + Streamlit Control Center &amp; Tableau Suite
+            </div>
+            <div style="display:flex; gap:16px;">
+                <a href="javascript:void(0)" onclick="openModal('login-modal')" style="color:var(--accent-blue); text-decoration:none; font-weight:700;">🔐 Clinician Login</a>
+                <a href="javascript:void(0)" onclick="openModal('privacy-modal')" style="color:var(--accent-teal); text-decoration:none; font-weight:700;">🛡️ Privacy &amp; Policy</a>
+                <a href="http://localhost:8501" target="_blank" style="color:var(--purple); text-decoration:none; font-weight:700;">🎛️ Streamlit Control Center (:8501)</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- TOAST -->
+    <div id="toast" class="toast">Action completed</div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

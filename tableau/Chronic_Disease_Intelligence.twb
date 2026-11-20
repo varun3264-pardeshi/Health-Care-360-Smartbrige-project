@@ -1,0 +1,377 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<workbook source-build='2023.3.0' source-platform='win' version='18.1' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <document-format-change-manifest>
+    <AutoCreateAndUpdateDSDPhoneLayouts />
+    <IntuitiveSorting />
+    <IntuitiveSorting_EncodingByColor />
+    <SetMembershipFilter />
+  </document-format-change-manifest>
+  <preferences>
+    <preference name='ui.encoding.shelf.height' value='24' />
+    <preference name='ui.shelf.height' value='26' />
+  </preferences>
+  <datasources>
+    <datasource caption='Chronic Disease Intelligence Dataset (SmartBridge)' inline='true' name='federated.chronic_disease' version='18.1'>
+      <connection class='federated'>
+        <named-connections>
+          <named-connection caption='chronic_disease_tableau_ready' name='textscan.chronic_disease'>
+            <connection class='textscan' directory='../data/processed' filename='chronic_disease_tableau_ready.csv' password='' server='' />
+          </named-connection>
+        </named-connections>
+        <relation connection='textscan.chronic_disease' name='chronic_disease_tableau_ready.csv' table='[chronic_disease_tableau_ready#csv]' type='table'>
+          <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
+            <column datatype='string' name='patient_id' ordinal='0' />
+            <column datatype='integer' name='age' ordinal='1' />
+            <column datatype='string' name='gender' ordinal='2' />
+            <column datatype='string' name='region' ordinal='3' />
+            <column datatype='real' name='bmi' ordinal='4' />
+            <column datatype='integer' name='systolic_bp' ordinal='5' />
+            <column datatype='integer' name='diastolic_bp' ordinal='6' />
+            <column datatype='real' name='cholesterol_total' ordinal='7' />
+            <column datatype='real' name='cholesterol_hdl' ordinal='8' />
+            <column datatype='real' name='cholesterol_ldl' ordinal='9' />
+            <column datatype='real' name='fasting_glucose' ordinal='10' />
+            <column datatype='real' name='hba1c' ordinal='11' />
+            <column datatype='string' name='smoking_status' ordinal='12' />
+            <column datatype='string' name='alcohol_consumption' ordinal='13' />
+            <column datatype='real' name='physical_activity_mins' ordinal='14' />
+            <column datatype='integer' name='fatigue_reported' ordinal='15' />
+            <column datatype='string' name='chest_pain_type' ordinal='16' />
+            <column datatype='integer' name='dizziness_reported' ordinal='17' />
+            <column datatype='integer' name='shortness_of_breath' ordinal='18' />
+            <column datatype='integer' name='heart_disease' ordinal='19' />
+            <column datatype='integer' name='diabetes' ordinal='20' />
+            <column datatype='integer' name='stroke' ordinal='21' />
+            <column datatype='date' name='assessment_date' ordinal='22' />
+            <column datatype='string' name='review_status' ordinal='23' />
+            <column datatype='integer' name='is_synthetic' ordinal='24' />
+            <column datatype='integer' name='pulse_pressure' ordinal='25' />
+            <column datatype='real' name='mean_arterial_pressure' ordinal='26' />
+            <column datatype='real' name='cholesterol_ratio' ordinal='27' />
+            <column datatype='string' name='bmi_category' ordinal='28' />
+            <column datatype='string' name='bp_category' ordinal='29' />
+            <column datatype='string' name='glucose_category' ordinal='30' />
+            <column datatype='string' name='exercise_level' ordinal='31' />
+            <column datatype='string' name='age_group' ordinal='32' />
+            <column datatype='integer' name='multimorbidity_count' ordinal='33' />
+            <column datatype='real' name='data_completeness_pct' ordinal='34' />
+          </columns>
+        </relation>
+      </connection>
+      <column caption='Patient ID' datatype='string' name='[patient_id]' role='dimension' type='nominal' />
+      <column caption='Patient Age' datatype='integer' name='[age]' role='measure' type='quantitative' />
+      <column caption='Age Group' datatype='string' name='[age_group]' role='dimension' type='nominal' />
+      <column caption='Gender' datatype='string' name='[gender]' role='dimension' type='nominal' />
+      <column caption='Geographic Region' datatype='string' name='[region]' role='dimension' type='nominal' />
+      <column caption='Body Mass Index (BMI)' datatype='real' name='[bmi]' role='measure' type='quantitative' />
+      <column caption='BMI Category' datatype='string' name='[bmi_category]' role='dimension' type='nominal' />
+      <column caption='Systolic Blood Pressure (mmHg)' datatype='integer' name='[systolic_bp]' role='measure' type='quantitative' />
+      <column caption='Diastolic Blood Pressure (mmHg)' datatype='integer' name='[diastolic_bp]' role='measure' type='quantitative' />
+      <column caption='Blood Pressure Category' datatype='string' name='[bp_category]' role='dimension' type='nominal' />
+      <column caption='Total Cholesterol (mg/dL)' datatype='real' name='[cholesterol_total]' role='measure' type='quantitative' />
+      <column caption='Fasting Glucose (mg/dL)' datatype='real' name='[fasting_glucose]' role='measure' type='quantitative' />
+      <column caption='Glucose Category' datatype='string' name='[glucose_category]' role='dimension' type='nominal' />
+      <column caption='HbA1c (%)' datatype='real' name='[hba1c]' role='measure' type='quantitative' />
+      <column caption='Smoking Habit' datatype='string' name='[smoking_status]' role='dimension' type='nominal' />
+      <column caption='Alcohol Consumption' datatype='string' name='[alcohol_consumption]' role='dimension' type='nominal' />
+      <column caption='Exercise Level' datatype='string' name='[exercise_level]' role='dimension' type='nominal' />
+      <column caption='Chest Pain Symptom' datatype='string' name='[chest_pain_type]' role='dimension' type='nominal' />
+      <column caption='Fatigue Reported' datatype='integer' name='[fatigue_reported]' role='dimension' type='ordinal' />
+      <column caption='Dizziness Reported' datatype='integer' name='[dizziness_reported]' role='dimension' type='ordinal' />
+      <column caption='Heart Disease' datatype='integer' name='[heart_disease]' role='measure' type='quantitative' />
+      <column caption='Type 2 Diabetes' datatype='integer' name='[diabetes]' role='measure' type='quantitative' />
+      <column caption='Stroke' datatype='integer' name='[stroke]' role='measure' type='quantitative' />
+      <column caption='Multimorbidity Count' datatype='integer' name='[multimorbidity_count]' role='measure' type='quantitative' />
+
+      <!-- Calculated Fields for Scenarios 1, 2 & 3 -->
+      <column caption='Heart Disease Prevalence %' datatype='real' name='[Calculation_HD_Prev]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='SUM([heart_disease]) / COUNT([patient_id]) * 100' />
+      </column>
+      <column caption='Diabetes Prevalence %' datatype='real' name='[Calculation_Diab_Prev]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='SUM([diabetes]) / COUNT([patient_id]) * 100' />
+      </column>
+      <column caption='Stroke Prevalence %' datatype='real' name='[Calculation_Stroke_Prev]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='SUM([stroke]) / COUNT([patient_id]) * 100' />
+      </column>
+      <column caption='High Risk Patient Flag' datatype='string' name='[Calculation_High_Risk_Flag]' role='dimension' type='nominal'>
+        <calculation class='tableau' formula='IF [systolic_bp] &gt;= 140 OR [fasting_glucose] &gt;= 126 OR [bmi] &gt;= 30 OR [multimorbidity_count] &gt;= 1 THEN &quot;High Risk&quot; ELSE &quot;Low/Moderate Risk&quot; END' />
+      </column>
+      <column caption='Multimorbidity Burden Tier' datatype='string' name='[Calculation_Multi_Tier]' role='dimension' type='nominal'>
+        <calculation class='tableau' formula='IF [multimorbidity_count] &gt;= 2 THEN &quot;High (2+ Diseases)&quot; ELSEIF [multimorbidity_count] = 1 THEN &quot;Single Condition&quot; ELSE &quot;No Chronic Disease&quot; END' />
+      </column>
+    </datasource>
+  </datasources>
+
+  <worksheets>
+    <!-- Scenario 1 Worksheets (Dr. Michael Carter — Clinical Risk Assessment) -->
+    <worksheet name='Sc1_BP_Category_vs_Disease_Prevalence'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='Chronic Disease Intelligence Dataset (SmartBridge)' name='federated.chronic_disease' />
+          </datasources>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Bar' />
+          </pane>
+        </panes>
+        <rows>[federated.chronic_disease].[Calculation_HD_Prev]</rows>
+        <cols>[federated.chronic_disease].[none:bp_category:nk]</cols>
+      </table>
+    </worksheet>
+
+    <worksheet name='Sc1_Glucose_Category_vs_Diabetes'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='Chronic Disease Intelligence Dataset (SmartBridge)' name='federated.chronic_disease' />
+          </datasources>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Bar' />
+          </pane>
+        </panes>
+        <rows>[federated.chronic_disease].[Calculation_Diab_Prev]</rows>
+        <cols>[federated.chronic_disease].[none:glucose_category:nk]</cols>
+      </table>
+    </worksheet>
+
+    <worksheet name='Sc1_Cholesterol_and_BMI_Risk_Profile'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='Chronic Disease Intelligence Dataset (SmartBridge)' name='federated.chronic_disease' />
+          </datasources>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Bar' />
+          </pane>
+        </panes>
+        <rows>[federated.chronic_disease].[avg:cholesterol_total:qk]</rows>
+        <cols>[federated.chronic_disease].[none:Calculation_High_Risk_Flag:nk]</cols>
+      </table>
+    </worksheet>
+
+    <!-- Scenario 2 Worksheets (Emily Rodriguez — Lifestyle & Behavioral Analytics) -->
+    <worksheet name='Sc2_Smoking_Habit_vs_Chronic_Disease'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='Chronic Disease Intelligence Dataset (SmartBridge)' name='federated.chronic_disease' />
+          </datasources>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Bar' />
+          </pane>
+        </panes>
+        <rows>[federated.chronic_disease].[Calculation_HD_Prev]</rows>
+        <cols>[federated.chronic_disease].[none:smoking_status:nk]</cols>
+      </table>
+    </worksheet>
+
+    <worksheet name='Sc2_Exercise_Level_vs_Diabetes'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='Chronic Disease Intelligence Dataset (SmartBridge)' name='federated.chronic_disease' />
+          </datasources>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Bar' />
+          </pane>
+        </panes>
+        <rows>[federated.chronic_disease].[Calculation_Diab_Prev]</rows>
+        <cols>[federated.chronic_disease].[none:exercise_level:nk]</cols>
+      </table>
+    </worksheet>
+
+    <worksheet name='Sc2_Alcohol_Consumption_Impact'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='Chronic Disease Intelligence Dataset (SmartBridge)' name='federated.chronic_disease' />
+          </datasources>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Bar' />
+          </pane>
+        </panes>
+        <rows>[federated.chronic_disease].[Calculation_Stroke_Prev]</rows>
+        <cols>[federated.chronic_disease].[none:alcohol_consumption:nk]</cols>
+      </table>
+    </worksheet>
+
+    <!-- Scenario 3 Worksheets (Dr. Priya Nair — Population & Symptom Surveillance) -->
+    <worksheet name='Sc3_Age_Group_Disease_Trend'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='Chronic Disease Intelligence Dataset (SmartBridge)' name='federated.chronic_disease' />
+          </datasources>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Line' />
+          </pane>
+        </panes>
+        <rows>[federated.chronic_disease].[Calculation_HD_Prev]</rows>
+        <cols>[federated.chronic_disease].[none:age_group:nk]</cols>
+      </table>
+    </worksheet>
+
+    <worksheet name='Sc3_Age_x_BMI_Vulnerability_Heatmap'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='Chronic Disease Intelligence Dataset (SmartBridge)' name='federated.chronic_disease' />
+          </datasources>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Square' />
+          </pane>
+        </panes>
+        <rows>[federated.chronic_disease].[none:bmi_category:nk]</rows>
+        <cols>[federated.chronic_disease].[none:age_group:nk]</cols>
+      </table>
+    </worksheet>
+
+    <worksheet name='Sc3_Symptom_Chest_Pain_Fatigue_Dizziness'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='Chronic Disease Intelligence Dataset (SmartBridge)' name='federated.chronic_disease' />
+          </datasources>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Bar' />
+          </pane>
+        </panes>
+        <rows>[federated.chronic_disease].[Calculation_HD_Prev]</rows>
+        <cols>[federated.chronic_disease].[none:chest_pain_type:nk]</cols>
+      </table>
+    </worksheet>
+  </worksheets>
+
+  <dashboards>
+    <!-- Dashboard 1: Scenario 1 — Dr. Michael Carter (Clinical Risk Assessment) -->
+    <dashboard name='Dashboard_1_Scenario1_Clinical_Risk_Dr_Carter'>
+      <style />
+      <size maxheight='850' maxwidth='1360' minheight='850' minwidth='1360' sizing-mode='fixed' />
+      <zones>
+        <zone h='100000' id='1' type-v2='layout-basic' w='100000' x='0' y='0'>
+          <zone h='48000' id='2' name='Sc1_BP_Category_vs_Disease_Prevalence' w='48000' x='1000' y='1000' />
+          <zone h='48000' id='3' name='Sc1_Glucose_Category_vs_Diabetes' w='48000' x='51000' y='1000' />
+          <zone h='48000' id='4' name='Sc1_Cholesterol_and_BMI_Risk_Profile' w='98000' x='1000' y='51000' />
+        </zone>
+      </zones>
+    </dashboard>
+
+    <!-- Dashboard 2: Scenario 2 — Emily Rodriguez (Lifestyle & Behavioral Impact) -->
+    <dashboard name='Dashboard_2_Scenario2_Lifestyle_Emily_Rodriguez'>
+      <style />
+      <size maxheight='850' maxwidth='1360' minheight='850' minwidth='1360' sizing-mode='fixed' />
+      <zones>
+        <zone h='100000' id='10' type-v2='layout-basic' w='100000' x='0' y='0'>
+          <zone h='48000' id='11' name='Sc2_Smoking_Habit_vs_Chronic_Disease' w='48000' x='1000' y='1000' />
+          <zone h='48000' id='12' name='Sc2_Exercise_Level_vs_Diabetes' w='48000' x='51000' y='1000' />
+          <zone h='48000' id='13' name='Sc2_Alcohol_Consumption_Impact' w='98000' x='1000' y='51000' />
+        </zone>
+      </zones>
+    </dashboard>
+
+    <!-- Dashboard 3: Scenario 3 — Dr. Priya Nair (Population & Symptom Surveillance) -->
+    <dashboard name='Dashboard_3_Scenario3_Population_Dr_Priya_Nair'>
+      <style />
+      <size maxheight='850' maxwidth='1360' minheight='850' minwidth='1360' sizing-mode='fixed' />
+      <zones>
+        <zone h='100000' id='20' type-v2='layout-basic' w='100000' x='0' y='0'>
+          <zone h='48000' id='21' name='Sc3_Age_Group_Disease_Trend' w='48000' x='1000' y='1000' />
+          <zone h='48000' id='22' name='Sc3_Age_x_BMI_Vulnerability_Heatmap' w='48000' x='51000' y='1000' />
+          <zone h='48000' id='23' name='Sc3_Symptom_Chest_Pain_Fatigue_Dizziness' w='98000' x='1000' y='51000' />
+        </zone>
+      </zones>
+    </dashboard>
+
+    <!-- Storyboard: Chronic Disease Risk Intelligence Story -->
+    <dashboard name='Story_Chronic_Disease_Risk_Intelligence' type='storyboard'>
+      <style />
+      <size maxheight='850' maxwidth='1360' minheight='850' minwidth='1360' sizing-mode='fixed' />
+      <zones>
+        <zone h='100000' id='30' type-v2='layout-basic' w='100000' x='0' y='0'>
+          <zone h='98000' id='31' type-v2='flipboard' w='98000' x='1000' y='1000'>
+            <flipboard active-id='1' nav-type='caption' show-nav-arrows='true'>
+              <story-points>
+                <story-point caption='1. Scenario 1: Clinical Biomarker Risk (Dr. Michael Carter)' captured-sheet='Dashboard_1_Scenario1_Clinical_Risk_Dr_Carter' id='1' />
+                <story-point caption='2. Scenario 2: Lifestyle &amp; Behavioral Drivers (Emily Rodriguez)' captured-sheet='Dashboard_2_Scenario2_Lifestyle_Emily_Rodriguez' id='2' />
+                <story-point caption='3. Scenario 3: Vulnerable Demographics &amp; Symptoms (Dr. Priya Nair)' captured-sheet='Dashboard_3_Scenario3_Population_Dr_Priya_Nair' id='3' />
+              </story-points>
+            </flipboard>
+          </zone>
+        </zone>
+      </zones>
+    </dashboard>
+  </dashboards>
+
+  <windows source-height='30'>
+    <window class='worksheet' name='Sc1_BP_Category_vs_Disease_Prevalence' />
+    <window class='worksheet' name='Sc2_Smoking_Habit_vs_Chronic_Disease' />
+    <window class='worksheet' name='Sc3_Age_Group_Disease_Trend' />
+    <window class='dashboard' maximized='true' name='Dashboard_1_Scenario1_Clinical_Risk_Dr_Carter' />
+    <window class='dashboard' name='Dashboard_2_Scenario2_Lifestyle_Emily_Rodriguez' />
+    <window class='dashboard' name='Dashboard_3_Scenario3_Population_Dr_Priya_Nair' />
+    <window class='dashboard' name='Story_Chronic_Disease_Risk_Intelligence' />
+  </windows>
+</workbook>
